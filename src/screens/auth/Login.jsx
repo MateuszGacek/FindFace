@@ -11,7 +11,9 @@ function Login() {
 
 	const loginHandler = useCallback((values) => {
 		async function loginHelper() {
-			const data = await login(values.email, values.password);
+			// const data = await login(values.email, values.password);
+			const data = await login('mg@gmail.com', '123456');
+
 			console.log(data);
 			// if (data.user.aud === 'authenticated') {
 			// 	const token = data.session.access_token;

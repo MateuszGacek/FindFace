@@ -10,7 +10,11 @@ const Tabs = createBottomTabNavigator();
 
 function Main() {
 	return (
-		<Tabs.Navigator>
+		<Tabs.Navigator
+		// screenOptions={{
+		// 	headerShown: false,
+		// }}
+		>
 			<Tabs.Screen name='Dashboard' component={Dashboard} />
 			<Tabs.Screen name='Search' component={Search} />
 			<Tabs.Screen name='CreatePost' component={CreatePost} />

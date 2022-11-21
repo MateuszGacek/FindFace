@@ -1,10 +1,21 @@
-import React from 'react'
-import { Text } from 'react-native'
+import { useNavigation } from '@react-navigation/native';
+import React, { useContext } from 'react';
+import { Button, Text } from 'react-native';
+import { AuthContext } from '../store/authContext';
 
 function Home() {
-  return (
-    <Text>Home</Text>
-  )
+	const navigation = useNavigation();
+	const authContext = useContext(AuthContext);
+	function logoutHandler() {
+		authContext.logout();
+		navigation.navigate('Auth', { screen: 'Login' });
+	}
+	return (
+		<>
+			<Text>Home</Text>
+			<Button title='logout' onPress={logoutHandler} />
+		</>
+	);
 }
 
-export default Home
+export default Home;

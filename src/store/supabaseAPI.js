@@ -13,6 +13,19 @@ const supabase = createClient(URL, KEY, {
 	},
 });
 
+export async function USER(id) {
+	const user = await supabase.from('users').select().eq('uuid', id).single();
+	console.log(user);
+}
+
+export async function DATA() {
+	const response = await supabase
+		.from('posts')
+		.select('*')
+		.is('archived_at', null);
+	console.log(response);
+}
+
 export async function register(email, password) {
 	const { data, error } = await supabase.auth.signUp({
 		email: email,
