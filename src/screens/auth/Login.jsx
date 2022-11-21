@@ -14,14 +14,11 @@ function Login() {
 			// const data = await login(values.email, values.password);
 			const data = await login('mg@gmail.com', '123456');
 
-			console.log(data);
-			// if (data.user.aud === 'authenticated') {
-			// 	const token = data.session.access_token;
-			// 	console.log(token);
-			// 	console.log('logged!');
-			// } else {
-			// 	Alert.alert('Wrong login or password', 'Please try again');
-			// }
+			if (data.message === 'Invalid login credentials') {
+				Alert.alert('Wrong login or password', 'Please try again');
+			} else {
+				console.log('Invalid!');
+			}
 			replace('Main');
 		}
 		loginHelper();

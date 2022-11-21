@@ -31,6 +31,7 @@ export async function register(email, password) {
 		email: email,
 		password: password,
 	});
+
 	if (error) {
 		return error;
 	} else {
@@ -43,6 +44,8 @@ export async function login(email, password) {
 		email: email,
 		password: password,
 	});
+
+	// const res = JSON.stringify(data);
 	if (error) {
 		return error;
 	} else {

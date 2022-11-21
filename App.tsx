@@ -17,7 +17,7 @@ export default function App() {
 		<AuthContextProvider>
 			<NavigationContainer>
 				<Stack.Navigator
-					initialRouteName='Auth'
+					initialRouteName='Main'
 					screenOptions={{
 						headerShown: false,
 					}}
