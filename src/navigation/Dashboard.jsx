@@ -1,8 +1,8 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import { Text } from 'react-native';
 
-import Home from '../screens/Home';
+import Home from '../screens/dashboard/Home';
+import SinglePost from '../screens/dashboard/SinglePost';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,6 +13,7 @@ export default function Dashboard() {
 				headerShown: false,
 			}}
 		>
+			<Stack.Screen name='SinglePost' component={SinglePost} />
 			<Stack.Screen name='Home' component={Home} />
 		</Stack.Navigator>
 	);

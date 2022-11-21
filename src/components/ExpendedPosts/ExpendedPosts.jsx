@@ -2,10 +2,11 @@ import React from 'react';
 import ExpendedPost from './ExpendedPost';
 import { FlatList, Text, View, StyleSheet } from 'react-native';
 import { postData } from '../../store/DUMMY/postData';
+import { useNavigation } from '@react-navigation/native';
 
 function ExpendedPosts() {
 	const posts = postData;
-	<Text>asda</Text>;
+	const navigation = useNavigation();
 	return (
 		<View style={styles.container}>
 			<FlatList

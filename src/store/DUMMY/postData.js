@@ -4,7 +4,12 @@ export const postData = [
 		url: 'https://www.ivertech.com/Articles/Images/KoalaBear200x200.jpg',
 		like: '11',
 		userName: 'Somebody',
-		comment: 'new comment',
+		comment: {
+			one: 'Comment 1',
+			two: 'Comment 2',
+			three: 'Comment 3',
+			four: 'Comment 4',
+		},
 		id: 1,
 	},
 	{
@@ -12,7 +17,12 @@ export const postData = [
 		url: 'https://www.ivertech.com/Articles/Images/KoalaBear200x200.jpg',
 		like: '11',
 		userName: 'Somebody',
-		comment: 'new comment',
+		comment: {
+			one: 'Comment 1',
+			two: 'Comment 2',
+			three: 'Comment 3',
+			four: 'Comment 4',
+		},
 		id: 2,
 	},
 	{
@@ -20,7 +30,12 @@ export const postData = [
 		url: 'https://www.ivertech.com/Articles/Images/KoalaBear200x200.jpg',
 		like: '11',
 		userName: 'Somebody',
-		comment: 'new comment',
+		comment: {
+			one: 'Comment 1',
+			two: 'Comment 2',
+			three: 'Comment 3',
+			four: 'Comment 4',
+		},
 		id: 3,
 	},
 	{
@@ -28,7 +43,12 @@ export const postData = [
 		url: 'https://www.ivertech.com/Articles/Images/KoalaBear200x200.jpg',
 		like: '11',
 		userName: 'Somebody',
-		comment: 'new comment',
+		comment: {
+			one: 'Comment 1',
+			two: 'Comment 2',
+			three: 'Comment 3',
+			four: 'Comment 4',
+		},
 		id: 4,
 	},
 	{
@@ -36,7 +56,12 @@ export const postData = [
 		url: 'https://www.ivertech.com/Articles/Images/KoalaBear200x200.jpg',
 		like: '11',
 		userName: 'Somebody',
-		comment: 'new comment',
+		comment: {
+			one: 'Comment 1',
+			two: 'Comment 2',
+			three: 'Comment 3',
+			four: 'Comment 4',
+		},
 		id: 5,
 	},
 ];

@@ -1,8 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useContext } from 'react';
 import { Button, Text } from 'react-native';
-import ExpendedPosts from '../components/ExpendedPosts/ExpendedPosts';
-import { AuthContext } from '../store/authContext';
+import ExpendedPosts from '../../components/ExpendedPosts/ExpendedPosts';
+import { AuthContext } from '../../store/authContext';
 
 function Home() {
 	const navigation = useNavigation();
