@@ -8,23 +8,37 @@ import Auth from './src/navigation/Auth.jsx';
 import Main from './src/navigation/Main.jsx';
 import { AuthContextProvider } from './src/store/authContext.js';
 
+import {
+	useQuery,
+	useMutation,
+	useQueryClient,
+	QueryClient,
+	QueryClientProvider,
+} from '@tanstack/react-query';
+import { getPosts } from './src/store/supabaseAPI.js';
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+	const queryClient = new QueryClient();
+
+	
 	return (
-		<AuthContextProvider>
-			<NavigationContainer>
-				<Stack.Navigator
-					initialRouteName='Main'
-					screenOptions={{
-						headerShown: false,
-					}}
-				>
-					<Stack.Screen name='Auth' component={Auth} />
-					<Stack.Screen name='Main' component={Main} />
-				</Stack.Navigator>
-			</NavigationContainer>
-		</AuthContextProvider>
+		<QueryClientProvider client={queryClient}>
+			<AuthContextProvider>
+				<NavigationContainer>
+					<Stack.Navigator
+						initialRouteName='Main'
+						screenOptions={{
+							headerShown: false,
+						}}
+					>
+						<Stack.Screen name='Auth' component={Auth} />
+						<Stack.Screen name='Main' component={Main} />
+					</Stack.Navigator>
+				</NavigationContainer>
+			</AuthContextProvider>
+		</QueryClientProvider>
 	);
 }
 

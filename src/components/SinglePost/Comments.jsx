@@ -1,16 +1,14 @@
 import React from 'react';
 import { FlatList, Text, View, StyleSheet } from 'react-native';
+import RenderItemComment from './RenderItemComment';
 
-export default function Comments({ comments }) {
-	console.log(comments);
+export default function Comments({ comments, refetch }) {
 	return (
 		<View>
 			<FlatList
 				style={styles.listHeight}
 				data={comments}
-				renderItem={({ item }) => {
-					return <Text style={styles.border}>{item.body}</Text>;
-				}}
+				renderItem={(item)=>RenderItemComment(item,refetch)}
 				keyExtractor={(item) => item.id}
 			/>
 		</View>

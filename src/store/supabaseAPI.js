@@ -45,21 +45,26 @@ export async function addComment(id, comment) {
 		})
 		.limit(1)
 		.single();
-	console.log(response);
 	return response;
+}
+export async function deleteComment(id) {
+	const response = await supabase.from('comments').delete().eq('id', id);
 }
 
 export async function getPostDetails(id) {
-	const response = await supabase
-		.from('posts')
-		.select(
-			'id, created_at, description, image_url, comments ( body, creator_uuid, id )'
-		)
-		.eq('id', id)
-		.is('archived_at', null)
-		.single();
-
-	return response;
+	try {
+		const response = await supabase
+			.from('posts')
+			.select(
+				'id, created_at, description, image_url, comments ( body, creator_uuid, id )'
+			)
+			.eq('id', id)
+			.is('archived_at', null)
+			.single();
+		return response;
+	} catch (err) {
+		return err;
+	}
 }
 
 export async function getPosts() {
@@ -94,7 +99,6 @@ export async function login(email, password) {
 		password: password,
 	});
 
-	// const res = JSON.stringify(data);
 	if (error) {
 		return error;
 	} else {
