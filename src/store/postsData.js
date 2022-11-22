@@ -1,109 +1,37 @@
-// import React, { useState, useEffect } from 'react';
-// import { ScrollView, View, StyleSheet, Text, Button } from 'react-native';
-// import Comments from '../../components/SinglePost/Comments';
-// import InputAddNewComment from '../../components/SinglePost/InputAddNewComment';
-// import Likes from '../../components/SinglePost/Likes';
-// import PostImage from '../../components/SinglePost/PostImage';
-// import SmallAvatar from '../../components/SinglePost/SmallAvatar';
-// import Title from '../../components/SinglePost/Title';
-// import InputComment from '../../components/UI/InputComment';
-// import { addComment, getPostDetails, getPosts } from '../../store/supabaseAPI';
-// import { getSinglePostById } from '../../utilities/getSinglePostById';
-
-// import { useQuery } from '@tanstack/react-query';
-
-// function SinglePost({ route }) {
-// 	const { data, isLoading } = useQuery({
-// 		queryKey: ['postData'],
-// 		queryFn: getPostDetails(route.params),
-// 	});
-// 	function addNewCommentHandler(comment) {
-// 		addComment(route.params, comment);
-// 	}
-// 	console.log(data);
-
-// 	if (isLoading) {
-// 		return <Text>Loading...</Text>;
-// 	}
-
-// 	return (
-// 		<View style={styles.container}>
-// 			{/* <PostImage source={data.data.image_url} />
-// 			<Text>{data.data.description}</Text>
-// 			<Text>COMMENTS</Text>
-// 			<Comments comments={data.data.comments} /> */}
-// 			<InputAddNewComment onSubmit={addNewCommentHandler} />
-// 		</View>
-// 	);
-// }
-
-// const styles = StyleSheet.create({
-// 	container: {
-// 		margin: 20,
-// 	},
-// });
-
-// export default SinglePost;
-
-
-
-
-
-
-///////////////////////////////////////////////
-
-
-
-// import React, { useState, useEffect } from 'react';
-// import { ScrollView, View, StyleSheet, Text, Button } from 'react-native';
-// import Comments from '../../components/SinglePost/Comments';
-// import InputAddNewComment from '../../components/SinglePost/InputAddNewComment';
-// import Likes from '../../components/SinglePost/Likes';
-// import PostImage from '../../components/SinglePost/PostImage';
-// import SmallAvatar from '../../components/SinglePost/SmallAvatar';
-// import Title from '../../components/SinglePost/Title';
-// import InputComment from '../../components/UI/InputComment';
-// import { addComment, getPostDetails } from '../../store/supabaseAPI';
-// import { getSinglePostById } from '../../utilities/getSinglePostById';
-
-// function SinglePost({ route }) {
-// 	const [postDetails, setPostDetails] = useState(null);
-// 	const [mounted, setMounted] = useState(true);
-
-// 	useEffect(() => {
-// 		setMounted(true);
-// 		getPostDetails(route.params).then((items) => {
-// 			if (mounted) {
-// 				setPostDetails(items);
-// 			}
-// 		});
-// 		return setMounted(!mounted);
-// 	}, []);
-// 	function addNewCommentHandler(comment) {
-// 		addComment(route.params, comment);
-// 		setMounted(!mounted);
-// 	}
-
-// 	if (postDetails === null) {
-// 		return <Text>Loading...</Text>;
-// 	}
-
-// 	return (
-// 		<View style={styles.container}>
-// 			<PostImage source={postDetails.data.image_url} />
-// 			<Text>{postDetails.data.description}</Text>
-// 			<Text>COMMENTS</Text>
-// 			<Comments comments={postDetails.data.comments} />
-// 			<InputAddNewComment onSubmit={addNewCommentHandler} />
-// 		</View>
-// 	);
-// }
-
-// const styles = StyleSheet.create({
-// 	container: {
-// 		margin: 20,
-// 	},
-// });
-
-// export default SinglePost;
-
+const a = [
+	{
+		archived_at: null,
+		created_at: '2022-11-22T09:32:20.967568+00:00',
+		creator_uuid: '95d1c5be-f8f9-429c-8ddb-3ad464ef7542',
+		description:
+			'Fourth post Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+		id: 134,
+		image_url: 'https://www.ivertech.com/Articles/Images/KoalaBear200x200.jpg',
+	},
+	{
+		archived_at: null,
+		created_at: '2022-11-22T09:29:26.353789+00:00',
+		creator_uuid: '95d1c5be-f8f9-429c-8ddb-3ad464ef7542',
+		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+		id: 131,
+		image_url: 'https://www.ivertech.com/Articles/Images/KoalaBear200x200.jpg',
+	},
+	{
+		archived_at: null,
+		created_at: '2022-11-22T09:31:28.751403+00:00',
+		creator_uuid: '95d1c5be-f8f9-429c-8ddb-3ad464ef7542',
+		description:
+			'Second post Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+		id: 132,
+		image_url: 'https://www.ivertech.com/Articles/Images/KoalaBear200x200.jpg',
+	},
+	{
+		archived_at: null,
+		created_at: '2022-11-22T09:32:09.735279+00:00',
+		creator_uuid: '95d1c5be-f8f9-429c-8ddb-3ad464ef7542',
+		description:
+			'Third post Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+		id: 133,
+		image_url: 'https://www.ivertech.com/Articles/Images/KoalaBear200x200.jpg',
+	},
+];

@@ -13,7 +13,7 @@ const supabase = createClient(URL, KEY, {
 	},
 });
 
-export async function USER(id) {
+export async function asd(id) {
 	const user = await supabase.from('users').select().eq('uuid', id).single();
 	console.log(user);
 }

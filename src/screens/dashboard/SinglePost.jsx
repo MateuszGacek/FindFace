@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, StyleSheet, Text, Button } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import Comments from '../../components/SinglePost/Comments';
 import InputAddNewComment from '../../components/SinglePost/InputAddNewComment';
 import PostImage from '../../components/SinglePost/PostImage';
-import { addComment, getPostDetails, getPosts } from '../../store/supabaseAPI';
+import { addComment, getPostDetails } from '../../store/supabaseAPI';
 
 import { useQuery } from '@tanstack/react-query';
+import LoadingOverlay from '../../components/UI/LoadingOverlay';
 
 function SinglePost({ route }) {
 	const { data, isLoading, refetch } = useQuery({
@@ -18,7 +19,7 @@ function SinglePost({ route }) {
 	}
 
 	if (isLoading) {
-		return <Text>Loading...</Text>;
+		return <LoadingOverlay message='We are downloading your post :)' />;
 	}
 
 	return (
