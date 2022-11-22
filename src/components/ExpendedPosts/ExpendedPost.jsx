@@ -1,27 +1,27 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Text, StyleSheet, View, Image, Pressable } from 'react-native';
 
-function ExpendedPost({ item}) {
+function ExpendedPost({ item }, navigation) {
+	function postPressHandler() {
+		// console.log(item);
+		navigation.navigate('SinglePost', item.id);
+	}
 	return (
 		<Pressable
 			onPress={() => {
+				postPressHandler();
 			}}
 		>
 			<View style={styles.container}>
-				<Text>{item.name}</Text>
+				<Text>{item.creator_uuid}</Text>
 				<Image
 					style={styles.image}
 					source={{
-						uri: item.url,
+						uri: item.image_url,
 					}}
 				/>
 				<View>
-					<Text>{item.like} Likes</Text>
-				</View>
-				<View>
-					<Text>{item.somebody}</Text>
-					<Text>{item.comment.four}</Text>
+					<Text>{item.description}</Text>
 				</View>
 			</View>
 		</Pressable>

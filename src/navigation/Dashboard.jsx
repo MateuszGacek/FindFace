@@ -13,8 +13,8 @@ export default function Dashboard() {
 				headerShown: false,
 			}}
 		>
-			<Stack.Screen name='SinglePost' component={SinglePost} />
 			<Stack.Screen name='Home' component={Home} />
+			<Stack.Screen name='SinglePost' component={SinglePost} />
 		</Stack.Navigator>
 	);
 }

@@ -1,17 +1,19 @@
 import React from 'react';
 import ExpendedPost from './ExpendedPost';
-import { FlatList, Text, View, StyleSheet } from 'react-native';
+import { FlatList, Text, View, StyleSheet, Button } from 'react-native';
 import { postData } from '../../store/DUMMY/postData';
-import { useNavigation } from '@react-navigation/native';
 
-function ExpendedPosts() {
-	const posts = postData;
-	const navigation = useNavigation();
+function ExpendedPosts({ navigation }) {
+	const posts = postData.data;
+	const name = 'MATEUSZ';
+
 	return (
 		<View style={styles.container}>
 			<FlatList
 				data={posts}
-				renderItem={ExpendedPost}
+				renderItem={(item) => {
+					return ExpendedPost(item, navigation);
+				}}
 				keyExtractor={(item) => item.id}
 			/>
 		</View>

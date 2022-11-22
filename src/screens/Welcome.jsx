@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Text, StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { quer } from '../store/postsData';
+import { getPosts } from '../store/supabaseAPI';
 
 function Welcome() {
 	const { replace } = useNavigation();

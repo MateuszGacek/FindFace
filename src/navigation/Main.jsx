@@ -11,9 +11,9 @@ const Tabs = createBottomTabNavigator();
 function Main() {
 	return (
 		<Tabs.Navigator
-		// screenOptions={{
-		// 	headerShown: false,
-		// }}
+			screenOptions={{
+				headerShown: false,
+			}}
 		>
 			<Tabs.Screen name='Dashboard' component={Dashboard} />
 			<Tabs.Screen name='Search' component={Search} />

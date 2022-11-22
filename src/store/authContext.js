@@ -2,38 +2,37 @@ import { createContext, useState } from 'react';
 import * as SecureStore from 'expo-secure-store';
 
 export const AuthContext = createContext({
-	token: '',
+	userId: '',
 	isAuthenticated: false,
-	authenticate: (token) => {},
+	authenticate: (userId) => {},
 	logout: () => {},
 });
-async function saveToken(key, value) {
+async function saveUserId(key, value) {
 	await SecureStore.setItemAsync(key, value);
 }
-export async function getToken(key) {
-	let result = await SecureStore.getItemAsync(key);
-	console.log(result);
+export async function getUserId() {
+	let result = await SecureStore.getItemAsync('userId');
 	return result;
 }
-async function removeToken() {
-	await SecureStore.deleteItemAsync('token');
+async function removeUserId() {
+	await SecureStore.deleteItemAsync('userId');
 }
 
 export function AuthContextProvider({ children }) {
-	const [authToken, setAuthToken] = useState();
+	const [authUserId, setAuthUserId] = useState();
 
-	function authenticate(token) {
-		setAuthToken(token);
-		saveToken('token', token);
+	function authenticate(userId) {
+		setAuthUserId(userId);
+		saveUserId('userId', userId);
 	}
 	function logout() {
-		setAuthToken(null);
-		removeToken('token');
+		setAuthUserId(null);
+		removeUserId('userId');
 	}
 
 	const value = {
-		token: authToken,
-		isAuthenticated: !!authToken,
+		userId: authUserId,
+		isAuthenticated: !!authUserId,
 		authenticate: authenticate,
 		logout: logout,
 	};

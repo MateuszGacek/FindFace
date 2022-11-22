@@ -18,12 +18,48 @@ export async function USER(id) {
 	console.log(user);
 }
 
-export async function DATA() {
+export async function CREATEPOST(description, imageUrl) {
+	try {
+		const response = await supabase
+			.from('posts')
+			.insert({
+				description: description,
+				image_url: imageUrl,
+			})
+			.limit(1)
+			.single();
+		console.log(response);
+		return response;
+	} catch (err) {
+		console.log(err);
+		return err;
+	}
+}
+
+export async function getPostDetails(id) {
 	const response = await supabase
 		.from('posts')
-		.select('*')
-		.is('archived_at', null);
-	console.log(response);
+		.select(
+			'id, created_at, description, image_url, comments ( body, creator_uuid, id )'
+		)
+		.eq('id', id)
+		.is('archived_at', null)
+		.single();
+
+	return response;
+}
+
+export async function getPosts() {
+	try {
+		const response = await supabase
+			.from('posts')
+			.select('*')
+			.is('archived_at', null);
+		console.log(response);
+	} catch (err) {
+		console.log(err);
+		return err;
+	}
 }
 
 export async function register(email, password) {

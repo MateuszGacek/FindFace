@@ -17,9 +17,9 @@ function Login() {
 			if (data.message === 'Invalid login credentials') {
 				Alert.alert('Wrong login or password', 'Please try again');
 			} else {
-				console.log('Invalid!');
+				authContext.authenticate(data.user.id);
+				replace('Main');
 			}
-			replace('Main');
 		}
 		loginHelper();
 	}, []);

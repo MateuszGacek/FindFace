@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { Button, Text, StyleSheet, View, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AuthForm from '../../components/AuthForm.jsx';
-import { getToken } from '../../store/authContext.js';
 import { register } from '../../store/supabaseAPI.js';
 import { useCallback } from 'react';
 
@@ -12,12 +11,15 @@ function Register() {
 	const registerHandler = useCallback((values) => {
 		async function registerHelper() {
 			const data = await register(values.email, values.password);
-			console.log(data);
-			// if (data.session === null) {
-			// 	Alert.alert('User already exists', 'Try to login :)');
-			// } else {
-			// 	replace('Login');
-			// }
+			console.log(data.message);
+			if (
+				data.message === 'Signup requires a valid password' ||
+				data.message === 'Password should be at least 6 characters'
+			) {
+				Alert.alert('User already exists', 'Try to login :)');
+			} else {
+				replace('Login');
+			}
 		}
 		registerHelper();
 	}, []);

@@ -21,7 +21,7 @@ export default function App() {
 					}}
 				>
 					<Stack.Screen name='Auth' component={Auth} />
-					<Stack.Screen name='Main' component={Main} />					
+					<Stack.Screen name='Main' component={Main} />
 				</Stack.Navigator>
 			</NavigationContainer>
 		</AuthContextProvider>
