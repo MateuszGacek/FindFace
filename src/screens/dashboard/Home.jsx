@@ -13,9 +13,9 @@ function Home() {
 	}
 	return (
 		<>
-				<Text>Home</Text>
-				<Button title='logout' onPress={logoutHandler} />
-				<ExpendedPosts navigation={navigation} />
+			<Text>Home</Text>
+			<Button title='logout' onPress={logoutHandler} />
+			<ExpendedPosts navigation={navigation} />
 		</>
 	);
 }

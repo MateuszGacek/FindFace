@@ -22,13 +22,12 @@ const Stack = createNativeStackNavigator();
 export default function App() {
 	const queryClient = new QueryClient();
 
-	
 	return (
 		<QueryClientProvider client={queryClient}>
 			<AuthContextProvider>
 				<NavigationContainer>
 					<Stack.Navigator
-						initialRouteName='Main'
+						initialRouteName='Auth'
 						screenOptions={{
 							headerShown: false,
 						}}

@@ -73,9 +73,8 @@ export async function getPosts() {
 			.from('posts')
 			.select('*')
 			.is('archived_at', null);
-		console.log(response);
+		return response;
 	} catch (err) {
-		console.log(err);
 		return err;
 	}
 }
@@ -104,4 +103,23 @@ export async function login(email, password) {
 	} else {
 		return data;
 	}
+}
+
+export async function getLikes() {
+	const response = await supabase
+		.from('likes')
+		.select('*', { count: 'exact' })
+		.eq('post_id', 131);
+	console.log(response);
+}
+export async function setLikes(id) {
+	const response = await supabase
+		.from('likes')
+		.insert({
+			post_id: id,
+		})
+		.limit(1)
+		.single();
+
+	console.log(response);
 }

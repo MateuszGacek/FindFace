@@ -22,6 +22,7 @@ export function AuthContextProvider({ children }) {
 	const [authUserId, setAuthUserId] = useState();
 
 	function authenticate(userId) {
+		console.log(userId);
 		setAuthUserId(userId);
 		saveUserId('userId', userId);
 	}

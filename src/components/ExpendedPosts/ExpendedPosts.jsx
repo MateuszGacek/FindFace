@@ -1,16 +1,23 @@
 import React from 'react';
 import ExpendedPost from './ExpendedPost';
 import { FlatList, Text, View, StyleSheet, Button } from 'react-native';
-import { postData } from '../../store/DUMMY/postData';
+import { useQuery } from '@tanstack/react-query';
+import { getPosts } from '../../store/supabaseAPI';
 
 function ExpendedPosts({ navigation }) {
-	const posts = postData.data;
-	const name = 'MATEUSZ';
+	const { data, isLoading } = useQuery({
+		queryKey: ['postsData'],
+		queryFn: getPosts,
+	});
+
+	if (isLoading) {
+		return <Text>Loading...</Text>;
+	}
 
 	return (
 		<View style={styles.container}>
 			<FlatList
-				data={posts}
+				data={data.data}
 				renderItem={(item) => {
 					return ExpendedPost(item, navigation);
 				}}

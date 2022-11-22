@@ -13,6 +13,7 @@ function Login() {
 		async function loginHelper() {
 			// const data = await login(values.email, values.password);
 			const data = await login('mg@gmail.com', '123456');
+			// const data = await login('Janek@onet.pl', 'Password');
 
 			if (data.message === 'Invalid login credentials') {
 				Alert.alert('Wrong login or password', 'Please try again');

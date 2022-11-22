@@ -3,9 +3,9 @@ import { Text, StyleSheet, View, Image, Pressable } from 'react-native';
 
 function ExpendedPost({ item }, navigation) {
 	function postPressHandler() {
-		// console.log(item);
 		navigation.navigate('SinglePost', item.id);
 	}
+
 	return (
 		<Pressable
 			onPress={() => {
