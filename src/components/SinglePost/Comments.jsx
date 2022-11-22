@@ -1,14 +1,31 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { FlatList, Text, View, StyleSheet } from 'react-native';
 
-export default function Comments() {
+export default function Comments({ comments }) {
+	console.log(comments);
 	return (
 		<View>
-			<Text>com1</Text>
-			<Text>com1</Text>
-			<Text>com1</Text>
-			<Text>com1</Text>
-			<Text>com1</Text>
+			<FlatList
+				style={styles.listHeight}
+				data={comments}
+				renderItem={({ item }) => {
+					return <Text style={styles.border}>{item.body}</Text>;
+				}}
+				keyExtractor={(item) => item.id}
+			/>
 		</View>
 	);
 }
+
+const styles = StyleSheet.create({
+	listHeight: {
+		maxHeight: 250,
+		marginBottom: 25,
+	},
+	border: {
+		borderColor: 'red',
+		borderWidth: 2,
+		padding: 6,
+		margin: 4,
+	},
+});

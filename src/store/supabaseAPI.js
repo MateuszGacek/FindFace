@@ -36,6 +36,19 @@ export async function CREATEPOST(description, imageUrl) {
 	}
 }
 
+export async function addComment(id, comment) {
+	const response = await supabase
+		.from('comments')
+		.insert({
+			body: comment,
+			post_id: id,
+		})
+		.limit(1)
+		.single();
+	console.log(response);
+	return response;
+}
+
 export async function getPostDetails(id) {
 	const response = await supabase
 		.from('posts')
