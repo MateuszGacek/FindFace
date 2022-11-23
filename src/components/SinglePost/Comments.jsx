@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FlatList, Text, View, StyleSheet } from 'react-native';
 import RenderItemComment from './RenderItemComment';
+import { useQuery } from '@tanstack/react-query';
+import { getUserData } from '../../store/supabaseAPI';
+import LoadingOverlay from '../UI/LoadingOverlay';
+import { AuthContext } from '../../store/authContext';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Comments({ comments, refetch }) {
+	const authContext = useContext(AuthContext);
+	const navigation = useNavigation();
+	const { data, isLoading } = useQuery({
+		queryKey: ['userCommentCreator'],
+		queryFn: () => getUserData(authContext.userId),
+	});
+	if (isLoading) {
+		return <LoadingOverlay message='Loading post...' />;
+	}
 	return (
 		<View>
 			<FlatList
 				style={styles.listHeight}
 				data={comments}
-				renderItem={(item)=>RenderItemComment(item,refetch)}
+				renderItem={(item) =>
+					RenderItemComment(item, refetch, data, navigation)
+				}
 				keyExtractor={(item) => item.id}
 			/>
 		</View>
@@ -19,11 +35,5 @@ const styles = StyleSheet.create({
 	listHeight: {
 		maxHeight: 250,
 		marginBottom: 25,
-	},
-	border: {
-		borderColor: 'red',
-		borderWidth: 2,
-		padding: 6,
-		margin: 4,
 	},
 });

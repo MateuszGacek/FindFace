@@ -2,7 +2,6 @@ import React from 'react';
 import ExpendedPost from './ExpendedPost';
 import { FlatList, Text, View, StyleSheet, Button } from 'react-native';
 
-
 function ExpendedPosts({ navigation, data }) {
 	return (
 		<View style={styles.container}>

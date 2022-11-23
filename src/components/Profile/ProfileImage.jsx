@@ -1,11 +1,21 @@
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 
-function ProfileImage({ source }) {
+function ProfileImage({
+	source,
+	style,
+	justifyContent = 'center',
+	alignItems = 'center',
+}) {
 	return (
-		<View style={styles.container}>
+		<View
+			style={{
+				justifyContent: justifyContent,
+				alignItems: alignItems,
+			}}
+		>
 			<Image
-				style={styles.image}
+				style={[styles.image, style]}
 				source={{
 					uri: source,
 				}}
@@ -14,17 +24,12 @@ function ProfileImage({ source }) {
 	);
 }
 
-export default ProfileImage;
-
 const styles = StyleSheet.create({
-	container: {
-		marginTop: 70,
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
 	image: {
 		width: 130,
 		height: 130,
 		borderRadius: 150,
 	},
 });
+
+export default ProfileImage;
