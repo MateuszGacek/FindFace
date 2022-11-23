@@ -3,7 +3,6 @@ import * as SecureStore from 'expo-secure-store';
 
 export const AuthContext = createContext({
 	userId: '',
-	isAuthenticated: false,
 	authenticate: (userId) => {},
 	logout: () => {},
 });
@@ -22,7 +21,6 @@ export function AuthContextProvider({ children }) {
 	const [authUserId, setAuthUserId] = useState();
 
 	function authenticate(userId) {
-		console.log(userId);
 		setAuthUserId(userId);
 		saveUserId('userId', userId);
 	}
@@ -33,7 +31,6 @@ export function AuthContextProvider({ children }) {
 
 	const value = {
 		userId: authUserId,
-		isAuthenticated: !!authUserId,
 		authenticate: authenticate,
 		logout: logout,
 	};

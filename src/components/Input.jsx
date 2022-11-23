@@ -2,9 +2,6 @@ import React from 'react';
 import { TextInput, View, Text } from 'react-native';
 
 function Input({ label, onBlur, onChange, value }) {
-	{
-		console.log(value);
-	}
 	return (
 		<View>
 			<Text>{label}</Text>

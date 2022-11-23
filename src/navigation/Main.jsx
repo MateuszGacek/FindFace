@@ -8,6 +8,7 @@ import Profile from '../screens/Profile';
 import { useQuery } from '@tanstack/react-query/build/lib/useQuery';
 import { getPosts } from '../store/supabaseAPI';
 import LoadingOverlay from '../components/UI/LoadingOverlay';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 const Tabs = createBottomTabNavigator();
 
@@ -28,11 +29,40 @@ function Main() {
 			<Tabs.Screen
 				name='Dashboard'
 				component={Dashboard}
-				options={{ tabBarBadge: data.data.length }}
+				options={{
+					tabBarBadge: data.data.length,
+					tabBarIcon: ({ tintColor }) => (
+						<Ionicons name='home-outline' size={24} color={tintColor} />
+					),
+				}}
 			/>
-			<Tabs.Screen name='Search' component={Search} />
-			<Tabs.Screen name='CreatePost' component={CreatePost} />
-			<Tabs.Screen name='Profile' component={Profile} />
+			<Tabs.Screen
+				name='Search'
+				component={Search}
+				options={{
+					tabBarIcon: ({ tintColor }) => (
+						<Ionicons name='search' size={24} color={tintColor} />
+					),
+				}}
+			/>
+			<Tabs.Screen
+				name='CreatePost'
+				component={CreatePost}
+				options={{
+					tabBarIcon: ({ tintColor }) => (
+						<Ionicons name='create-outline' size={24} color={tintColor} />
+					),
+				}}
+			/>
+			<Tabs.Screen
+				name='Profile'
+				component={Profile}
+				options={{
+					tabBarIcon: ({ tintColor }) => (
+						<Ionicons name='person-outline' size={24} color={tintColor} />
+					),
+				}}
+			/>
 		</Tabs.Navigator>
 	);
 }

@@ -13,9 +13,9 @@ const supabase = createClient(URL, KEY, {
 	},
 });
 
-export async function asd(id) {
+export async function getUserData(id) {
 	const user = await supabase.from('users').select().eq('uuid', id).single();
-	console.log(user);
+	return user;
 }
 
 export async function CREATEPOST(description, imageUrl) {
@@ -28,10 +28,8 @@ export async function CREATEPOST(description, imageUrl) {
 			})
 			.limit(1)
 			.single();
-		console.log(response);
 		return response;
 	} catch (err) {
-		console.log(err);
 		return err;
 	}
 }
@@ -110,7 +108,6 @@ export async function getLikes() {
 		.from('likes')
 		.select('*', { count: 'exact' })
 		.eq('post_id', 131);
-	console.log(response);
 }
 export async function setLikes(id) {
 	const response = await supabase
@@ -120,6 +117,4 @@ export async function setLikes(id) {
 		})
 		.limit(1)
 		.single();
-
-	console.log(response);
 }

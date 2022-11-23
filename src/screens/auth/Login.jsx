@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../../store/authContext';
 import { login } from '../../store/supabaseAPI';
 import AuthForm from '../../components/AuthForm';
+import FlatButton from '../../components/UI/FlatButton';
 
 function Login() {
 	const { replace } = useNavigation();
@@ -27,9 +28,13 @@ function Login() {
 
 	return (
 		<View style={styles.container}>
-			<Text>Login</Text>
-			<Button title='ToRegister' onPress={() => replace('Register')} />
-			<AuthForm onSubmit={loginHandler} />
+			<View style={styles.formBox}>
+				<Text style={styles.title}>Login</Text>
+				<AuthForm onSubmit={loginHandler} />
+				<FlatButton onPress={() => replace('Register')}>
+					Create a new user
+				</FlatButton>
+			</View>
 		</View>
 	);
 }
@@ -41,5 +46,25 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
+	},
+	formBox: {
+		backgroundColor: 'gold',
+		padding: 50,
+		borderRadius: 12,
+		minWidth: '70%',
+		shadowColor: '#000',
+		shadowOffset: {
+			width: 0,
+			height: 4,
+		},
+		shadowOpacity: 0.3,
+		shadowRadius: 4.65,
+
+		elevation: 8,
+	},
+	title: {
+		textAlign: 'center',
+		fontSize: 28,
+		color: 'red',
 	},
 });
