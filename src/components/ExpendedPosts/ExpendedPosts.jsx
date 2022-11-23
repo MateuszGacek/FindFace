@@ -10,7 +10,7 @@ function ExpendedPosts({ navigation, data }) {
 			<FlatList
 				data={data}
 				renderItem={(item) => {
-					return ExpendedPost(item, navigation);
+					return <ExpendedPost item={item} navigation={navigation} />;
 				}}
 				keyExtractor={(item) => item.id}
 			/>

@@ -1,16 +1,16 @@
 import { useNavigation } from '@react-navigation/native';
 import { Image, Pressable, StyleSheet } from 'react-native';
 
-export function RenderSimplePostsList({ item }, navigation) {
+export function RenderSimplePostsList({ item, navigation }) {
 	function postPressHandler() {
-		navigation.navigate('SinglePost', item.id);
+		navigation.navigate('SinglePost', item.item.id);
 	}
 	return (
 		<Pressable onPress={postPressHandler}>
 			<Image
 				style={styles.image}
 				source={{
-					uri: item.image_url,
+					uri: item.item.image_url,
 				}}
 			/>
 		</Pressable>

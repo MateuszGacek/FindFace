@@ -22,9 +22,14 @@ export default function Comments({ comments, refetch }) {
 			<FlatList
 				style={styles.listHeight}
 				data={comments}
-				renderItem={(item) =>
-					RenderItemComment(item, refetch, data, navigation)
-				}
+				renderItem={(item) => (
+					<RenderItemComment
+						item={item}
+						refetch={refetch}
+						data={data}
+						navigation={navigation}
+					/>
+				)}
 				keyExtractor={(item) => item.id}
 			/>
 		</View>

@@ -22,7 +22,7 @@ function ProfilePosts({ navigation }) {
 				numColumns={3}
 				data={data.data}
 				renderItem={(item) => {
-					return RenderSimplePostsList(item, navigation);
+					return <RenderSimplePostsList item={item} navigation={navigation} />;
 				}}
 				keyExtractor={(item) => item.id}
 			/>

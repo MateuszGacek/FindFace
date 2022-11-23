@@ -6,7 +6,7 @@ import { checkProfileData } from '../../utilities/checkProfileData';
 import ProfileImage from '../Profile/ProfileImage';
 import IconButton from '../UI/IconButton';
 
-function RenderItemComment({ item }, refetch, data, navigation) {
+function RenderItemComment({ item, refetch, data, navigation }) {
 	const userCommentCreator = checkProfileData(data.data);
 	function userCommentCreatorHandler() {
 		navigation.navigate('OtherUsersProbile', data.data.uuid);
@@ -28,13 +28,13 @@ function RenderItemComment({ item }, refetch, data, navigation) {
 				</View>
 			</Pressable>
 			<View style={styles.container}>
-				<Text>{item.body}</Text>
+				<Text>{item.item.body}</Text>
 				<IconButton
 					icon='trash-outline'
 					color='#333'
 					size={24}
 					onPress={() => {
-						deleteComment(item.id);
+						deleteComment(item.item.id);
 						refetch();
 					}}
 				/>
