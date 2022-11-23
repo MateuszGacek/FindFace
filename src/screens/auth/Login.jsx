@@ -1,5 +1,12 @@
 import React, { useCallback, useContext } from 'react';
-import { Button, Text, StyleSheet, View, Alert } from 'react-native';
+import {
+	Text,
+	StyleSheet,
+	View,
+	Alert,
+	TouchableWithoutFeedback,
+	Keyboard,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../../store/authContext';
 import { login } from '../../store/supabaseAPI';
@@ -27,15 +34,17 @@ function Login() {
 	}, []);
 
 	return (
-		<View style={styles.container}>
-			<View style={styles.formBox}>
-				<Text style={styles.title}>Login</Text>
-				<AuthForm onSubmit={loginHandler} />
-				<FlatButton onPress={() => replace('Register')}>
-					Create a new user
-				</FlatButton>
+		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+			<View style={styles.container}>
+				<View style={styles.formBox}>
+					<Text style={styles.title}>Login</Text>
+					<AuthForm onSubmit={loginHandler} />
+					<FlatButton onPress={() => replace('Register')}>
+						Create a new user
+					</FlatButton>
+				</View>
 			</View>
-		</View>
+		</TouchableWithoutFeedback>
 	);
 }
 
