@@ -37,7 +37,7 @@ function Profile({ route }) {
 		queryKey: ['userData'],
 		queryFn: () => getUserData(route.params || authContext.userId),
 	});
-	if (loading1) {
+	if (loading1 || loading2) {
 		return <LoadingOverlay message='Loading...' />;
 	}
 	function expendedPostIsEnableHandler() {
