@@ -103,11 +103,12 @@ export async function login(email, password) {
 	}
 }
 
-export async function getLikes() {
-	const response = await supabase
+export async function getLikes(id) {
+	const response = supabase
 		.from('likes')
 		.select('*', { count: 'exact' })
-		.eq('post_id', 131);
+		.eq('post_id', id);
+	return response;
 }
 export async function setLikes(id) {
 	const response = await supabase

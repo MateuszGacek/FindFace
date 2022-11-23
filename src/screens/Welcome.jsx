@@ -5,6 +5,7 @@ import { getUserId } from '../store/authContext';
 import { useQuery } from '@tanstack/react-query';
 import LoadingOverlay from '../components/UI/LoadingOverlay';
 import { AuthContext } from '../store/authContext.js';
+import { getAll } from '../store/supabaseAPI';
 
 function Welcome() {
 	const { replace } = useNavigation();
@@ -16,6 +17,10 @@ function Welcome() {
 	if (isLoading) {
 		return <LoadingOverlay message='Connecting...' />;
 	}
+
+	useEffect(() => {
+		
+	}, []);
 
 	if (data) {
 		authContext.authenticate(data);

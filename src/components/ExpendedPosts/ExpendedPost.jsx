@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, StyleSheet, View, Image, Pressable } from 'react-native';
+import { getLikes } from '../../store/supabaseAPI';
 
 function ExpendedPost({ item }, navigation) {
 	function postPressHandler() {
@@ -13,7 +14,9 @@ function ExpendedPost({ item }, navigation) {
 			}}
 		>
 			<View style={styles.container}>
-				<Text>{item.creator_uuid}</Text>
+				<Text>
+					NIE CHCE POBIERAC TUTAJ NAME, MNIEJ REQUESTOW ;D{item.creator_uuid}
+				</Text>
 				<Image
 					style={styles.image}
 					source={{
