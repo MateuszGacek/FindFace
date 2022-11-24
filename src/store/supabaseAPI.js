@@ -50,19 +50,15 @@ export async function deleteComment(id) {
 }
 
 export async function getPostDetails(id) {
-	try {
-		const response = await supabase
-			.from('posts')
-			.select(
-				'id, created_at, description, image_url, comments ( body, creator_uuid, id )'
-			)
-			.eq('id', id)
-			.is('archived_at', null)
-			.single();
-		return response;
-	} catch (err) {
-		return err;
-	}
+	const response = await supabase
+		.from('posts')
+		.select(
+			'id, created_at, description, image_url, comments ( body, creator_uuid, id )'
+		)
+		.eq('id', id)
+		.is('archived_at', null)
+		.single();
+	return response;
 }
 
 export async function getPosts() {
@@ -104,7 +100,7 @@ export async function login(email, password) {
 }
 
 export async function getLikes(id) {
-	const response = supabase
+	const response = await supabase
 		.from('likes')
 		.select('*', { count: 'exact' })
 		.eq('post_id', id);

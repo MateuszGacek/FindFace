@@ -19,7 +19,7 @@ function Welcome() {
 		queryKey: ['isAuthenticated'],
 		queryFn: () => getUserId(),
 	});
-	if (isLoading ) {
+	if (isLoading) {
 		return <LoadingOverlay message='Connecting...' />;
 	}
 

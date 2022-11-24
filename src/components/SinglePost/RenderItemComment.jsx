@@ -11,6 +11,11 @@ function RenderItemComment({ item, refetch, data, navigation }) {
 	function userCommentCreatorHandler() {
 		navigation.navigate('OtherUsersProfile', data.data.uuid);
 	}
+
+	async function deleteCommentHandler(params) {
+		await deleteComment(item.item.id);
+		refetch();
+	}
 	return (
 		<View>
 			<Pressable onPress={userCommentCreatorHandler}>
@@ -29,15 +34,17 @@ function RenderItemComment({ item, refetch, data, navigation }) {
 			</Pressable>
 			<View style={styles.container}>
 				<Text>{item.item.body}</Text>
-				<IconButton
-					icon='trash-outline'
-					color='#333'
-					size={24}
-					onPress={() => {
-						deleteComment(item.item.id);
-						refetch();
-					}}
-				/>
+				{refetch && (
+					<IconButton
+						icon='trash-outline'
+						color='#333'
+						size={24}
+						onPress={() => {
+							deleteComment(item.item.id);
+							refetch();
+						}}
+					/>
+				)}
 			</View>
 		</View>
 	);
@@ -53,7 +60,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		backgroundColor: 'rgba(0, 0, 0, 0.1)',
 		borderRadius: 8,
-		paddingHorizontal: 6,
+		padding: 8,
 	},
 	userContainer: {
 		flexDirection: 'row',
