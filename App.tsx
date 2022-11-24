@@ -6,9 +6,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Auth from './src/navigation/Auth.jsx';
 import Main from './src/navigation/Main.jsx';
-import { AuthContextProvider } from './src/store/authContext.js';
+import { AuthContext, AuthContextProvider } from './src/store/authContext.js';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useContext } from 'react';
 
 const Stack = createNativeStackNavigator();
 

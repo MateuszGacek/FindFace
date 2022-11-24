@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import {
+	View,
+	StyleSheet,
+	Text,
+	TouchableWithoutFeedback,
+	Keyboard,
+} from 'react-native';
 import Comments from '../../components/SinglePost/Comments';
 import InputAddNewComment from '../../components/SinglePost/InputAddNewComment';
 import PostImage from '../../components/SinglePost/PostImage';
@@ -23,13 +29,15 @@ function SinglePost({ route }) {
 	}
 
 	return (
-		<View style={styles.container}>
-			<PostImage source={data.data.image_url} />
-			<Text>{data.data.description}</Text>
-			<Text>COMMENTS</Text>
-			<Comments comments={data.data.comments} refetch={refetch} />
-			<InputAddNewComment onSubmit={addNewCommentHandler} />
-		</View>
+		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+			<View style={styles.container}>
+				<PostImage source={data.data.image_url} />
+				<Text>{data.data.description}</Text>
+				<Text>COMMENTS</Text>
+				<Comments comments={data.data.comments} refetch={refetch} />
+				<InputAddNewComment onSubmit={addNewCommentHandler} />
+			</View>
+		</TouchableWithoutFeedback>
 	);
 }
 

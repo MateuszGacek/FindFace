@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Button, Text, StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { getUserId } from '../store/authContext';
@@ -9,18 +9,25 @@ import { AuthContext } from '../store/authContext.js';
 function Welcome() {
 	const { replace } = useNavigation();
 	const authContext = useContext(AuthContext);
-	const { data, isLoading } = useQuery({
-		queryKey: ['isAuthenticated'],
-		queryFn: () => getUserId(),
-	});
+
+	const [isLoading, setIsLoading] = useState(true);
+	let data;
+
+	useEffect(() => {
+		const dataFetch = async () => {
+			data = await getUserId();
+			setIsLoading(false);
+			if (data) {
+				authContext.authenticate(data);
+				return replace('Main');
+			}
+		};
+
+		dataFetch();
+	}, [data]);
 	if (isLoading) {
 		return <LoadingOverlay message='Connecting...' />;
 	}
-
-	// if (data) {
-	// 	authContext.authenticate(data);
-	// 	return replace('Main');
-	// }
 	return (
 		<View style={styles.container}>
 			<Text>Welcome</Text>
