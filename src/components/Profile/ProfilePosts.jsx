@@ -1,13 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import LoadingOverlay from '../UI/LoadingOverlay';
 import { getPosts } from '../../store/supabaseAPI';
-import { AuthContext } from '../../store/authContext';
 import { useQuery } from '@tanstack/react-query';
 import { RenderSimplePostsList } from './RenderSimplePostsList';
 
 function ProfilePosts({ navigation }) {
-	const authContext = useContext(AuthContext);
 	const { data, isLoading } = useQuery({
 		queryKey: ['postsData'],
 		queryFn: getPosts,

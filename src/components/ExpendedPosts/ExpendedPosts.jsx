@@ -1,8 +1,6 @@
 import React from 'react';
 import ExpendedPost from './ExpendedPost';
-import { FlatList, View, StyleSheet, Text } from 'react-native';
-import { getLikes } from '../../store/supabaseAPI';
-import { useQuery } from '@tanstack/react-query';
+import { FlatList, View, StyleSheet } from 'react-native';
 
 function ExpendedPosts({ navigation, data }) {
 	return (

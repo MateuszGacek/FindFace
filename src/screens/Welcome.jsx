@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Button, Text, StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { getUserId } from '../store/authContext';
-import { useQuery } from '@tanstack/react-query';
 import LoadingOverlay from '../components/UI/LoadingOverlay';
 import { AuthContext } from '../store/authContext.js';
 

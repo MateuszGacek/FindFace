@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
 import { Image, Pressable, StyleSheet } from 'react-native';
 
 export function RenderSimplePostsList({ item, navigation }) {

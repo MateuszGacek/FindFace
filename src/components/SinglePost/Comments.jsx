@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { FlatList, Text, View, StyleSheet } from 'react-native';
+import { FlatList,  View, StyleSheet } from 'react-native';
 import RenderItemComment from './RenderItemComment';
 import { useQuery } from '@tanstack/react-query';
 import { getUserData } from '../../store/supabaseAPI';
@@ -11,7 +11,7 @@ export default function Comments({ comments, refetch }) {
 	const authContext = useContext(AuthContext);
 	const navigation = useNavigation();
 	const { data, isLoading } = useQuery({
-		queryKey: ['userCommentCreator'],
+		queryKey: ['userCommentCreator', authContext.userId],
 		queryFn: () => getUserData(authContext.userId),
 	});
 	if (isLoading) {

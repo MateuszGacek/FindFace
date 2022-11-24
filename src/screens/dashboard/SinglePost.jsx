@@ -16,7 +16,7 @@ import LoadingOverlay from '../../components/UI/LoadingOverlay';
 
 function SinglePost({ route }) {
 	const { data, isLoading, refetch } = useQuery({
-		queryKey: ['postData'],
+		queryKey: ['postData', route.params],
 		queryFn: () => getPostDetails(route.params),
 	});
 	function addNewCommentHandler(comment) {

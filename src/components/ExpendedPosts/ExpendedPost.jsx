@@ -13,8 +13,6 @@ function ExpendedPost({ item, navigation }) {
 		navigation.navigate('SinglePost', item.item.id);
 	}
 
-	// console.log({ postId });
-
 	const [
 		{ isLoading: isLoadingUserData, data: userData },
 		{ isLoading: isLoadingLikesData, data: likesData },

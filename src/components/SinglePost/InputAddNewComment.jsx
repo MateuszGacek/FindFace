@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, Button, Alert } from 'react-native';
+import { View,  StyleSheet, TextInput, Button, Alert } from 'react-native';
 
 function InputAddNewComment({ onSubmit }) {
 	const [newComment, setNewComment] = useState('');

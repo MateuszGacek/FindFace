@@ -1,8 +1,7 @@
 import React from 'react';
 // import Input from './Input';
 import { useForm, Controller } from 'react-hook-form';
-import { TextInput, Button, Text, View } from 'react-native';
-import { useCallback } from 'react';
+import {  Button,  View } from 'react-native';
 import Input from './Input';
 function AuthForm({ onSubmit }) {
 	const {

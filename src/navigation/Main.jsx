@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Search from '../screens/Search';
@@ -9,7 +9,6 @@ import { useQuery } from '@tanstack/react-query/build/lib/useQuery';
 import { getPosts } from '../store/supabaseAPI';
 import LoadingOverlay from '../components/UI/LoadingOverlay';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { AuthContext } from '../store/authContext';
 
 const Tabs = createBottomTabNavigator();
 
