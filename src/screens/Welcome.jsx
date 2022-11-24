@@ -5,12 +5,6 @@ import { getUserId } from '../store/authContext';
 import { useQuery } from '@tanstack/react-query';
 import LoadingOverlay from '../components/UI/LoadingOverlay';
 import { AuthContext } from '../store/authContext.js';
-import {
-	getLikes,
-	getPostDetails,
-	getPosts,
-	getUserData,
-} from '../store/supabaseAPI';
 
 function Welcome() {
 	const { replace } = useNavigation();
@@ -23,10 +17,10 @@ function Welcome() {
 		return <LoadingOverlay message='Connecting...' />;
 	}
 
-	if (data) {
-		authContext.authenticate(data);
-		return replace('Main');
-	}
+	// if (data) {
+	// 	authContext.authenticate(data);
+	// 	return replace('Main');
+	// }
 	return (
 		<View style={styles.container}>
 			<Text>Welcome</Text>

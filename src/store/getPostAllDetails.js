@@ -1,18 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
-import { getLikes, getPostDetails, getPosts, getUserData } from './supabaseAPI';
+import { getLikes, getPostDetails, getUserData } from './supabaseAPI';
 
 export const getPostAllDetails = (postId, userId) => {
 	const userDataResponse = useQuery({
-		queryKey: ['userDataPostAkkDetails'],
+		queryKey: ['userDataPostAllDetails', { userId }],
 		queryFn: () => getUserData(userId),
 	});
 	const likesDataResponse = useQuery({
-		queryKey: ['LikesDataPostAkkDetails'],
+		queryKey: ['LikesDataPostAllDetails', { postId }],
 		queryFn: () => getLikes(postId),
 	});
 	const ComentDataResponse = useQuery({
-		queryKey: ['CommentDataPostAkkDetails'],
+		queryKey: ['CommentDataPostAllDetails', { postId }],
 		queryFn: () => getPostDetails(postId),
 	});
+
 	return [userDataResponse, likesDataResponse, ComentDataResponse];
 };

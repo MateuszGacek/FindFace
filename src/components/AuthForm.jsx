@@ -4,7 +4,6 @@ import { useForm, Controller } from 'react-hook-form';
 import { TextInput, Button, Text, View } from 'react-native';
 import { useCallback } from 'react';
 import Input from './Input';
-
 function AuthForm({ onSubmit }) {
 	const {
 		control,
@@ -23,7 +22,7 @@ function AuthForm({ onSubmit }) {
 				control={control}
 				name='email'
 				render={({ field: { onChange, onBlur, value } }) => (
-					<TextInput
+					<Input
 						onBlur={onBlur}
 						onChangeText={onChange}
 						value={value}
@@ -36,7 +35,7 @@ function AuthForm({ onSubmit }) {
 				control={control}
 				name='password'
 				render={({ field: { onChange, onBlur, value } }) => (
-					<TextInput
+					<Input
 						onBlur={onBlur}
 						onChangeText={onChange}
 						value={value}

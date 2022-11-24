@@ -1,7 +1,5 @@
 import React from 'react';
 import { Text, StyleSheet, View, Image, Pressable } from 'react-native';
-import { getLikes, getPostDetails } from '../../store/supabaseAPI';
-import { useQuery } from '@tanstack/react-query';
 import LoadingOverlay from '../UI/LoadingOverlay';
 import { getPostAllDetails } from '../../store/getPostAllDetails';
 import { checkProfileData } from '../../utilities/checkProfileData';
@@ -15,18 +13,20 @@ function ExpendedPost({ item, navigation }) {
 		navigation.navigate('SinglePost', item.item.id);
 	}
 
+	// console.log({ postId });
+
 	const [
 		{ isLoading: isLoadingUserData, data: userData },
-		{ isLoading: isLoadingLikesData, data: likesData, error },
+		{ isLoading: isLoadingLikesData, data: likesData },
 		{ isLoading: isLoadingCommentData, data: commentsData },
-	] = getPostAllDetails(131, userId);
+	] = getPostAllDetails(postId, userId);
 
 	if (isLoadingUserData || isLoadingLikesData || isLoadingCommentData) {
 		return <LoadingOverlay message='Loading post data...' />;
 	}
+
 	let lastComment;
 	let commentCounts = 0;
-	console.log(likesData.count);
 
 	if (commentsData.data !== null) {
 		if (commentsData.data.comments.length === 0) {
