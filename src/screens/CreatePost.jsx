@@ -1,10 +1,13 @@
-import React from 'react'
-import { Text } from 'react-native'
+import React from 'react';
+import { Text, View } from 'react-native';
+import ImagePicker from '../components/CreatePost/ImagePicker';
 
 function CreatePost() {
-  return (
-    <Text>CreatePost</Text>
-  )
+	return (
+		<View>
+			<ImagePicker />
+		</View>
+	);
 }
 
-export default CreatePost
+export default CreatePost;

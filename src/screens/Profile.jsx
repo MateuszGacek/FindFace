@@ -37,7 +37,9 @@ function Profile({ route }) {
 	if (isLoadingUserData || isLoadingexpendedPostsData) {
 		return <LoadingOverlay message='Loading...' />;
 	}
-	console.log(checkProfileData(user));
+	console.log('----------');
+	console.log(expendedPostsData);
+	console.log('----------');
 	function expendedPostIsEnableHandler() {
 		setExpendedPostIsEnable(!expendedPostIsEnable);
 	}

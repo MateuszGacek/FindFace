@@ -16,7 +16,7 @@ export default function Dashboard() {
 		>
 			<Stack.Screen name='Home' component={Home} />
 			<Stack.Screen name='SinglePost' component={SinglePost} />
-			<Stack.Screen name='OtherUsersProbile' component={Profile} />
+			<Stack.Screen name='OtherUsersProfile' component={Profile} />
 		</Stack.Navigator>
 	);
 }

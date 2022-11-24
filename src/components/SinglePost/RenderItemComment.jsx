@@ -9,7 +9,7 @@ import IconButton from '../UI/IconButton';
 function RenderItemComment({ item, refetch, data, navigation }) {
 	const userCommentCreator = checkProfileData(data.data);
 	function userCommentCreatorHandler() {
-		navigation.navigate('OtherUsersProbile', data.data.uuid);
+		navigation.navigate('OtherUsersProfile', data.data.uuid);
 	}
 	return (
 		<View>
