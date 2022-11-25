@@ -5,7 +5,13 @@ import { checkProfileData } from '../../utilities/checkProfileData';
 import ProfileImage from '../Profile/ProfileImage';
 import IconButton from '../UI/IconButton';
 
-function RenderItemComment({ item, refetch, data, navigation }) {
+function RenderItemComment({
+	item,
+	refetch,
+	data,
+	navigation,
+	isDeleteButton = true,
+}) {
 	const userCommentCreator = checkProfileData(data.data);
 	function userCommentCreatorHandler() {
 		navigation.navigate('OtherUsersProfile', data.data.uuid);
@@ -26,17 +32,19 @@ function RenderItemComment({ item, refetch, data, navigation }) {
 					</View>
 				</View>
 			</Pressable>
-			<View style={styles.container}>
+			<View style={styles.textContainer}>
 				<Text>{item.item.body}</Text>
-				<IconButton
-					icon='trash-outline'
-					color='#333'
-					size={24}
-					onPress={() => {
-						deleteComment(item.item.id);
-						refetch();
-					}}
-				/>
+				{isDeleteButton && (
+					<IconButton
+						icon='trash-outline'
+						color='#333'
+						size={24}
+						onPress={() => {
+							deleteComment(item.item.id);
+							refetch();
+						}}
+					/>
+				)}
 			</View>
 		</View>
 	);
@@ -45,14 +53,14 @@ function RenderItemComment({ item, refetch, data, navigation }) {
 export default RenderItemComment;
 
 const styles = StyleSheet.create({
-	container: {
+	textContainer: {
 		marginVertical: 5,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
 		backgroundColor: 'rgba(0, 0, 0, 0.1)',
 		borderRadius: 8,
-		paddingHorizontal: 6,
+		padding: 6,
 	},
 	userContainer: {
 		flexDirection: 'row',

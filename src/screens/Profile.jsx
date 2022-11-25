@@ -1,5 +1,5 @@
 import React, { useContext, useState, useMemo } from 'react';
-import { StyleSheet, View, Switch } from 'react-native';
+import { StyleSheet, View, Switch, Button } from 'react-native';
 import { AuthContext } from '../store/authContext';
 import LoadingOverlay from '../components/UI/LoadingOverlay';
 import ProfileImage from '../components/Profile/ProfileImage';
@@ -9,6 +9,7 @@ import ProfilePosts from '../components/Profile/ProfilePosts';
 import { useNavigation } from '@react-navigation/native';
 import ExpendedPosts from '../components/ExpendedPosts/ExpendedPosts';
 import { postsAndUserData } from '../store/postsAndUserData';
+import IconButton from '../components/UI/IconButton';
 
 function Profile({ route }) {
 	const [expendedPostIsEnable, setExpendedPostIsEnable] = useState(false);
@@ -40,11 +41,21 @@ function Profile({ route }) {
 	function expendedPostIsEnableHandler() {
 		setExpendedPostIsEnable(!expendedPostIsEnable);
 	}
+	function logoutHandler() {
+		authContext.logout();
+		navigation.navigate('Auth', { screen: 'Login' });
+	}
 
 	const userData = checkProfileData(user.data);
 
 	return (
 		<View style={styles.container}>
+			<View style={styles.iconPosition}>
+				{!route.params && (
+					<IconButton icon='power-outline' onPress={logoutHandler} size={40} />
+				)}
+			</View>
+
 			<ProfileImage source={userData.image_url} />
 			<ProfilName name={route.params ? userData.first_name : 'ME'} />
 			<View style={styles.postsContainer}>
@@ -65,8 +76,13 @@ function Profile({ route }) {
 export default Profile;
 
 const styles = StyleSheet.create({
+	iconPosition: {
+		position: 'absolute',
+		top: 30,
+		right: 40,
+	},
 	container: {
-		marginTop: 40,
+		paddingTop: 60,
 	},
 	postsContainer: {
 		maxHeight: '78%',

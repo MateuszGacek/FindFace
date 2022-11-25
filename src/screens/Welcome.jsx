@@ -24,6 +24,7 @@ function Welcome() {
 
 		dataFetch();
 	}, [data]);
+
 	if (isLoading) {
 		return <LoadingOverlay message='Connecting...' />;
 	}

@@ -115,3 +115,31 @@ export async function setLikes(id) {
 		.limit(1)
 		.single();
 }
+export async function deleteLikes(id) {
+	const response = await supabase.from('likes').delete().eq('id', id);
+	return response;
+}
+// export async function checkIsPostIsLiked(postId, userId) {
+// 	const response = supabase
+// 		.from('likes')
+// 		.select('*')
+// 		.eq('post_id', postId)
+// 		.eq('creator_uuid', userId);
+
+// 	return response;
+// }
+
+export async function uploadPicture(imageFile) {
+	// upload file
+	const res = await supabase.storage
+		.from('images')
+		.upload('imgname', imageFile, {
+			cacheControl: '3600',
+			upsert: false,
+		});
+	return res;
+}
+
+
+
+

@@ -34,8 +34,8 @@ function SinglePost({ route }) {
 				<PostImage source={data.data.image_url} />
 				<Text>{data.data.description}</Text>
 				<Text>COMMENTS</Text>
-				<Comments comments={data.data.comments} refetch={refetch} />
 				<InputAddNewComment onSubmit={addNewCommentHandler} />
+				<Comments comments={data.data.comments} refetch={refetch} />
 			</View>
 		</TouchableWithoutFeedback>
 	);

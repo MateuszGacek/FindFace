@@ -11,6 +11,7 @@ import AuthForm from '../../components/AuthForm.jsx';
 import { register } from '../../store/supabaseAPI.js';
 import { useCallback } from 'react';
 import FlatButton from '../../components/UI/FlatButton.jsx';
+import { registerValidation } from '../../utilities/authFormValidation.js';
 
 function Register() {
 	const { replace } = useNavigation();
@@ -35,7 +36,11 @@ function Register() {
 			<View style={styles.container}>
 				<View style={styles.formBox}>
 					<Text style={styles.title}>Register</Text>
-					<AuthForm onSubmit={registerHandler} />
+					<AuthForm
+						onSubmit={registerHandler}
+						validation={registerValidation}
+						isRegister={true}
+					/>
 					<FlatButton onPress={() => replace('Login')}>
 						Log in instead
 					</FlatButton>

@@ -1,15 +1,14 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useContext } from 'react';
-import { Button, Text } from 'react-native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 import ExpendedPosts from '../../components/ExpendedPosts/ExpendedPosts';
-import { AuthContext } from '../../store/authContext';
 import { useQuery } from '@tanstack/react-query';
 import LoadingOverlay from '../../components/UI/LoadingOverlay';
 import { getPosts } from '../../store/supabaseAPI';
+import AvatarStories from '../../components/CreatePost/AvatarStories';
 
 function Home() {
 	const navigation = useNavigation();
-	const authContext = useContext(AuthContext);
 	const { data, isLoading } = useQuery({
 		queryKey: ['postsData'],
 		queryFn: getPosts,
@@ -18,17 +17,27 @@ function Home() {
 	if (isLoading) {
 		return <LoadingOverlay message='Loading...' />;
 	}
-	function logoutHandler() {
-		authContext.logout();
-		navigation.navigate('Auth', { screen: 'Login' });
-	}
 	return (
 		<>
-			<Text>Home</Text>
-			<Button title='logout' onPress={logoutHandler} />
+			<View style={styles.avatarsList}>
+				<AvatarStories />
+				<AvatarStories />
+				<AvatarStories />
+				<AvatarStories />
+				<AvatarStories />
+			</View>
 			<ExpendedPosts navigation={navigation} data={data.data} />
 		</>
 	);
 }
 
 export default Home;
+
+const styles = StyleSheet.create({
+	avatarsList: {
+		marginHorizontal: 20,
+		marginTop: 45,
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+	},
+});

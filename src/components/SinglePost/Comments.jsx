@@ -7,7 +7,7 @@ import LoadingOverlay from '../UI/LoadingOverlay';
 import { AuthContext } from '../../store/authContext';
 import { useNavigation } from '@react-navigation/native';
 
-export default function Comments({ comments, refetch }) {
+export default function Comments({ comments, refetch, isDeleteButton }) {
 	const authContext = useContext(AuthContext);
 	const navigation = useNavigation();
 	const { data, isLoading } = useQuery({
@@ -28,6 +28,7 @@ export default function Comments({ comments, refetch }) {
 						refetch={refetch}
 						data={data}
 						navigation={navigation}
+						isDeleteButton={isDeleteButton}
 					/>
 				)}
 				keyExtractor={(item) => item.id}

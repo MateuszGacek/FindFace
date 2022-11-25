@@ -20,7 +20,7 @@ export default ExpendedPosts;
 
 const styles = StyleSheet.create({
 	container: {
-		height: '100%',
+		height: '90%',
 		paddingBottom: 30,
 	},
 });

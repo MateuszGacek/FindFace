@@ -4,7 +4,7 @@ import { getLikes, getPostDetails, getUserData } from './supabaseAPI';
 export const getPostAllDetails = (postId, userId) => {
 	const userDataResponse = useQuery({
 		queryKey: ['userDataPostAllDetails', { userId }],
-		queryFn: () => getUserData(userId),
+		queryFn: () => getUserData(String(userId)),
 	});
 	const likesDataResponse = useQuery({
 		queryKey: ['LikesDataPostAllDetails', { postId }],
@@ -14,6 +14,5 @@ export const getPostAllDetails = (postId, userId) => {
 		queryKey: ['CommentDataPostAllDetails', { postId }],
 		queryFn: () => getPostDetails(postId),
 	});
-
 	return [userDataResponse, likesDataResponse, ComentDataResponse];
 };

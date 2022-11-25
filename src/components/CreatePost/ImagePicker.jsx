@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import { launchCameraAsync, useCameraPermissions } from 'expo-image-picker';
+import { launchCameraAsync } from 'expo-image-picker';
 import OutlinedButton from '../UI/OutlinedButton';
+import { decode } from 'base64-arraybuffer';
 
 function ImagePicker() {
 	const [pickedImage, setPickedImage] = useState('');
-	const [cameraPermissionInformation, requestPermission] =
-		useCameraPermissions();
+
+	let imagePreview = <Text>No image taken yet.</Text>;
+	if (pickedImage) {
+		imagePreview = <Image style={styles.image} source={{ uri: pickedImage }} />;
+	}
 	async function takeImageHandlaer() {
 		const image = await launchCameraAsync({
 			allowsEditing: true,
@@ -14,11 +18,7 @@ function ImagePicker() {
 			quality: 0.25,
 		});
 		setPickedImage(image.assets[0].uri);
-	}
-
-	let imagePreview = <Text>No image taken yet.</Text>;
-	if (pickedImage) {
-		imagePreview = <Image style={styles.image} source={{ uri: pickedImage }} />;
+		console.log(image.assets[0].uri);
 	}
 	return (
 		<View>

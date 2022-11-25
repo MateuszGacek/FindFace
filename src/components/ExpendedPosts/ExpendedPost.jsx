@@ -1,30 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, StyleSheet, View, Image, Pressable } from 'react-native';
 import LoadingOverlay from '../UI/LoadingOverlay';
 import { getPostAllDetails } from '../../store/getPostAllDetails';
 import { checkProfileData } from '../../utilities/checkProfileData';
 import Comments from '../SinglePost/Comments';
 import IconButton from '../UI/IconButton';
+import { deleteLikes, setLikes } from '../../store/supabaseAPI';
+import { checkIsPostIsLiked } from '../../utilities/checkIsUserLikedPost';
 
 function ExpendedPost({ item, navigation }) {
 	let postId = item.item.id;
 	let userId = item.item.creator_uuid;
-	function postPressHandler() {
-		navigation.navigate('SinglePost', item.item.id);
-	}
+	let lastComment;
+	let commentCounts = 0;
 
 	const [
 		{ isLoading: isLoadingUserData, data: userData },
 		{ isLoading: isLoadingLikesData, data: likesData },
 		{ isLoading: isLoadingCommentData, data: commentsData },
 	] = getPostAllDetails(postId, userId);
+	const userDataCorrectly = checkProfileData(userData);
 
 	if (isLoadingUserData || isLoadingLikesData || isLoadingCommentData) {
 		return <LoadingOverlay message='Loading post data...' />;
 	}
-
-	let lastComment;
-	let commentCounts = 0;
+	let is = checkIsPostIsLiked(likesData.data, userId);
 
 	if (commentsData.data !== null) {
 		if (commentsData.data.comments.length === 0) {
@@ -37,7 +37,17 @@ function ExpendedPost({ item, navigation }) {
 		lastComment = false;
 	}
 
-	const userDataCorrectly = checkProfileData(userData);
+	async function likesHandler() {
+		if (is) {
+			await deleteLikes(is?.id);
+		} else {
+			await setLikes(postId);
+		}
+	}
+
+	function postPressHandler() {
+		navigation.navigate('SinglePost', item.item.id);
+	}
 
 	return (
 		<Pressable
@@ -57,10 +67,15 @@ function ExpendedPost({ item, navigation }) {
 				/>
 				<View style={styles.iconsContainer}>
 					<View style={[styles.iconBox, styles.likesBorder]}>
-						<IconButton icon='thumbs-up-outline' size={24} />
+						<IconButton
+							style={styles.likesIcon}
+							icon={is ? 'thumbs-up' : 'thumbs-up-outline'}
+							size={24}
+							onPress={likesHandler}
+						/>
 						<Text>{likesData.count}</Text>
 					</View>
-					<View style={[styles.iconBox, styles.commentsBorder]}>
+					<View style={[styles.iconBox, styles.commentsMargin]}>
 						<IconButton icon='chatbubble-ellipses-outline' size={24} />
 						<Text>{commentCounts}</Text>
 					</View>
@@ -71,7 +86,7 @@ function ExpendedPost({ item, navigation }) {
 				{lastComment && (
 					<View>
 						<Text>Last comment:</Text>
-						<Comments comments={lastComment} />
+						<Comments comments={lastComment} isDeleteButton={false} />
 					</View>
 				)}
 			</View>
@@ -106,19 +121,16 @@ const styles = StyleSheet.create({
 	},
 	iconBox: {
 		flexDirection: 'row',
-		justifyContent: 'space-around',
+		justifyContent: 'space-evenly',
 		alignItems: 'center',
 		minWidth: 70,
 		padding: 4,
 		marginTop: 15,
-		borderWidth: 1,
-		borderRadius: 8,
 	},
-	likesBorder: {
-		borderColor: 'red',
+	likesIcon: {
+		padding: 10,
 	},
-	commentsBorder: {
-		borderColor: 'blue',
+	commentsMargin: {
 		marginLeft: 8,
 	},
 });

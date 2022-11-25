@@ -12,6 +12,7 @@ import { AuthContext } from '../../store/authContext';
 import { login } from '../../store/supabaseAPI';
 import AuthForm from '../../components/AuthForm';
 import FlatButton from '../../components/UI/FlatButton';
+import { loginValidation } from '../../utilities/authFormValidation';
 
 function Login() {
 	const { replace } = useNavigation();
@@ -19,9 +20,7 @@ function Login() {
 
 	const loginHandler = useCallback((values) => {
 		async function loginHelper() {
-			// const data = await login(values.email, values.password);
-			const data = await login('mg@gmail.com', '123456');
-			// const data = await login('Janek@onet.pl', 'Password');
+			const data = await login(values.email, values.password);
 
 			if (data.message === 'Invalid login credentials') {
 				Alert.alert('Wrong login or password', 'Please try again');
@@ -38,7 +37,7 @@ function Login() {
 			<View style={styles.container}>
 				<View style={styles.formBox}>
 					<Text style={styles.title}>Login</Text>
-					<AuthForm onSubmit={loginHandler} />
+					<AuthForm onSubmit={loginHandler} validation={loginValidation} />
 					<FlatButton onPress={() => replace('Register')}>
 						Create a new user
 					</FlatButton>
